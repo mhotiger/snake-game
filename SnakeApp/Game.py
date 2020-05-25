@@ -1,5 +1,7 @@
 
 import pygame;
+import SnakeApp.constants as const
+from SnakeApp.GameState import GameState
 
 # Size of the screen
 SCREEN_TITLE = 'SnakeGame';
@@ -12,7 +14,7 @@ BLACK_COLOR = (0, 0, 0);
 
 # Clock used to update game events and frames
 clock = pygame.time.Clock();
-TICK_RATE = 60;
+TICK_RATE = 5;
 pygame.font.init();
 
 
@@ -35,6 +37,7 @@ class Game:
 		"""
 		self.title = 'Snake';
 
+		self.game_state = GameState((25,25));
 
 		self.grid_rect_size = min(size[0],size[1])//25;
 		self.margin = self.grid_rect_size * 0.1;
@@ -55,19 +58,15 @@ class Game:
 
 
 		while not self.done:
-			self.screen.fill(WHITE_COLOR);
+			self.screen.fill(BLACK_COLOR);
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.done = True;
 
-			for r in range(25):
-				for c in range(25):
-					pygame.draw.rect(self.screen,WHITE_COLOR,
-						[(self.margin + self.grid_rect_size) * c + self.margin,
-						 (self.margin + self.grid_rect_size) * r + self.margin,
-						 self.grid_rect_size,
-						 self.grid_rect_size])
+			self.draw();
+
+			self.game_state.tick();
 
 			clock.tick(TICK_RATE);
 
@@ -75,5 +74,19 @@ class Game:
 
 		pygame.quit();
 
+
+	def draw(self):
+
+		for r in range(25):
+				for c in range(25):
+					col = WHITE_COLOR;
+					if self.game_state.snake.on_position([r,c]):
+						col = RED_COLOR;
+
+					pygame.draw.rect(self.screen, col,
+						[(self.margin + self.grid_rect_size) * c + self.margin,
+						 (self.margin + self.grid_rect_size) * r + self.margin,
+						 self.grid_rect_size,
+						 self.grid_rect_size])
 
 
