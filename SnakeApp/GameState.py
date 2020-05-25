@@ -1,4 +1,5 @@
 #gamestate.py
+from SnakeApp.constants import *;
 from SnakeApp.Snake import Snake;
 from SnakeApp.FoodPellet import FoodPellet;
 
@@ -16,16 +17,12 @@ class GameState:
 
 	"""
 
-	#Constants to define user directions
-	UP = 1;
-	DOWN = 2;
-	LEFT = 3;
-	RIGHT = 4;
+	
 
 	def __init__(self, size):
 
 		self.size = size;
-		self.snake = Snake();
+		self.snake = Snake(pos=[13,13], bounds=(25,25));
 		self.pellets = [];
 		self.pellets.append(FoodPellet);
 
@@ -44,4 +41,6 @@ class GameState:
 		self._tickNum += 1;
 
 		self.snake.move(self.dir);
+		print(self._tickNum);
+
 
