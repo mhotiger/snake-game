@@ -59,7 +59,7 @@ class Game:
 
 
 		while not self.done:
-			self.screen.fill(BLACK_COLOR);
+			
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -74,21 +74,28 @@ class Game:
 					if event.key == pygame.K_RIGHT:
 						self.game_state.dir = RIGHT;
 
-			self.draw();
 
 			self.game_state.tick();
 
+			#draw the screen
+			self.draw();
+			pygame.display.flip();
+			
+
 			clock.tick(TICK_RATE);
 
-			pygame.display.flip();
+			
 
 		pygame.quit();
 
 
 	def draw(self):
 
-		for r in range(25):
-				for c in range(25):
+		self.screen.fill(BLACK_COLOR);
+
+
+		for r in range(self.game_state.size[0]):
+				for c in range(self.game_state.size[1]):
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;

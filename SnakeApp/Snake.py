@@ -7,12 +7,17 @@ class Snake:
 
 
 	def __init__(self, pos, bounds):
+		"""Create a snake starting at position <pos>(positions are a list of [x,y] coordinates) with maximum bounds <bounds>(a list of [x,y] size of the board)"""
 		self.bounds = bounds;
 		self.head = pos[:]
 		self.head_mod = pos[:]
+		#list will store the list of coordinates the snake occupies. start off with 3 elements
+		#add the head
 		self.list = deque([pos]);
-		self.list.append([pos[0]+1,pos[1]]);
-		self.list.append([pos[0]+2,pos[1]]);
+		#add an element one position down from the head
+		self.list.append([ pos[0] , pos[1]-1 ] );
+		#add an element 2 positions down from the head
+		self.list.append([ pos[0] , pos[1]-2 ] );
 		
 		self.collided_self = False;
 
