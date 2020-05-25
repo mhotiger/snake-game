@@ -1,6 +1,6 @@
 
 import pygame;
-import SnakeApp.constants as const
+from SnakeApp.constants import *
 from SnakeApp.GameState import GameState
 
 # Size of the screen
@@ -10,6 +10,7 @@ SCREEN_TITLE = 'SnakeGame';
 WHITE_COLOR = (255, 255, 255);
 RED_COLOR = (255,0,0);
 BLACK_COLOR = (0, 0, 0);
+BLUE_COLOR = (0,0,255);
 
 
 # Clock used to update game events and frames
@@ -63,6 +64,15 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.done = True;
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_UP:
+						self.game_state.dir = UP;
+					if event.key == pygame.K_DOWN:
+						self.game_state.dir = DOWN;
+					if event.key == pygame.K_LEFT:
+						self.game_state.dir = LEFT;
+					if event.key == pygame.K_RIGHT:
+						self.game_state.dir = RIGHT;
 
 			self.draw();
 
@@ -82,10 +92,12 @@ class Game:
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;
+					if self.game_state.snake.is_head([r,c]):
+						col = BLUE_COLOR;
 
 					pygame.draw.rect(self.screen, col,
-						[(self.margin + self.grid_rect_size) * c + self.margin,
-						 (self.margin + self.grid_rect_size) * r + self.margin,
+						[(self.margin + self.grid_rect_size) * r + self.margin,
+						 (self.margin + self.grid_rect_size) * c + self.margin,
 						 self.grid_rect_size,
 						 self.grid_rect_size])
 
