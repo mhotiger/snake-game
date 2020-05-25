@@ -1,4 +1,4 @@
-from SnakeApp import Game;
+from SnakeApp.Game import Game;
 
 
 game = Game();
