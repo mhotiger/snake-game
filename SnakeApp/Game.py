@@ -64,13 +64,7 @@ class Game:
 				if event.type == pygame.QUIT:
 					self.done = True;
 
-			for r in range(25):
-				for c in range(25):
-					pygame.draw.rect(self.screen,WHITE_COLOR,
-						[(self.margin + self.grid_rect_size) * c + self.margin,
-						 (self.margin + self.grid_rect_size) * r + self.margin,
-						 self.grid_rect_size,
-						 self.grid_rect_size])
+			self.draw();
 
 			self.game_state.tick();
 
@@ -80,5 +74,19 @@ class Game:
 
 		pygame.quit();
 
+
+	def draw(self):
+
+		for r in range(25):
+				for c in range(25):
+					col = WHITE_COLOR;
+					if self.game_state.snake.on_position([r,c]):
+						col = RED_COLOR;
+
+					pygame.draw.rect(self.screen, col,
+						[(self.margin + self.grid_rect_size) * c + self.margin,
+						 (self.margin + self.grid_rect_size) * r + self.margin,
+						 self.grid_rect_size,
+						 self.grid_rect_size])
 
 

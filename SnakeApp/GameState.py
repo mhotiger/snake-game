@@ -41,6 +41,9 @@ class GameState:
 		self._tickNum += 1;
 
 		self.snake.move(self.dir);
-		print(self._tickNum);
+		
+
+
+
 
 
