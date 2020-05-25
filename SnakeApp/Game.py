@@ -39,10 +39,10 @@ class Game:
 		self.grid_rect_size = min(size[0],size[1])//25;
 		self.margin = self.grid_rect_size * 0.1;
 		self.grid_rect_size -= self.margin;
-		
+
 		self.screen = pygame.display.set_mode(size);
 		pygame.display.set_caption(SCREEN_TITLE);
-		
+
 
 		self.done = False;
 
@@ -52,10 +52,10 @@ class Game:
 
 	def run(self):
 		"""Run the game loop"""
-		
+
 
 		while not self.done:
-			self.screen.fill(BLACK_COLOR);
+			self.screen.fill(WHITE_COLOR);
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
