@@ -35,6 +35,8 @@ class GameState:
 
 		self._tickNum = 0;
 
+	def check_collison(self):
+		return self.snake.on_position(self.pellets.pos)
 
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
@@ -46,7 +48,7 @@ class GameState:
 
 		if self.pellets.apple_exists == False:
 			self.pellets=FoodPellet()
-		if self.pellets.on_position([r,c]) == self.snake.on_position([r,c]):
+		if check_collision():
 			self.game_state.pellets.kill();
 
 
