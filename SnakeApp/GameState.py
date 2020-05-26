@@ -25,8 +25,8 @@ class GameState:
 		self.size = size;
 
 		self.snake = Snake(pos=[13,20], bounds=(25,25));
-		self.pellets = FoodPellet();
-
+		self.pellets = []
+		self.pellets.append(FoodPellet())
 
 		self.has_won = False;
 		self.has_lost = False;
@@ -36,7 +36,9 @@ class GameState:
 		self._tickNum = 0;
 
 	def check_collide(self):
-		return self.snake.on_position(self.pellets.pos)
+		for object in self.pellets:
+			if self.snake.on_position(pellet.pos):
+				return True
 
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
@@ -46,8 +48,8 @@ class GameState:
 
 		self.snake.move(self.dir);
 
-		if self.pellets.apple_exists == False:
-			self.pellets=FoodPellet()
+		if self.pellets == False:
+			self.pellets.append(FoodPellet())
 		if self.check_collide():
 			self.pellets.kill();
 
