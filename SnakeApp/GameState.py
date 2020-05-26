@@ -7,11 +7,7 @@ from SnakeApp.FoodPellet import FoodPellet;
 
 class GameState:
 	"""A class to hold the state and objects involved with the snake game
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> master
 	Properties:
 		size: a tuple that holds the (x,y) dimensions of the grid
 		snake: the game snake object
@@ -50,6 +46,8 @@ class GameState:
 
 		if self.pellets.apple_exists == False:
 			self.pellets=FoodPellet()
+		if self.pellets.on_position([r,c]) == self.snake.on_position([r,c]):
+			self.game_state.pellets.kill();
 
 
 

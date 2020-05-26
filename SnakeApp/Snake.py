@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-#Snake.py
-=======
-=======
->>>>>>> master
-#Snake.py
+
 from SnakeApp.constants import *
 from collections import deque;
 
@@ -13,14 +7,14 @@ class Snake:
 
 
 	def __init__(self, pos, bounds):
-<<<<<<< HEAD
+
 		self.bounds = bounds;
 		self.head = pos[:];
 		self.list = deque([pos]);
 		self.list.append([pos[0],pos[1]-1]);
 		self.list.append([pos[0],pos[1]-2]);
 
-=======
+
 		"""Create a snake starting at position <pos>(positions are a list of [x,y] coordinates) with maximum bounds <bounds>(a list of [x,y] size of the board)"""
 		self.bounds = bounds;
 		self.head = pos[:]
@@ -33,14 +27,14 @@ class Snake:
 		#add an element 2 positions down from the head
 		self.list.append([ pos[0] , pos[1]-2 ] );
 		
->>>>>>> master
+
 		self.collided_self = False;
 
 
 	def move(self, dir):
 		"""moves the snake by one position in the direction given"""
 		#TODO: change head based on the direction
-<<<<<<< HEAD
+
 		self.head[1] += 1;
 		head_mod = [self.head[0] % self.bounds[0], self.head[1] % self.bounds[0]];
 
@@ -51,7 +45,7 @@ class Snake:
 		if self.list.count(head_mod) > 1:
 			self.collided_self = True;
 
-=======
+
 		try:
 			assert(dir == UP or dir == DOWN or dir == LEFT or dir == RIGHT)
 		except:
@@ -81,25 +75,21 @@ class Snake:
 			self.collided_self = False;
 		
 		
->>>>>>> master
+
 	def on_position(self, pos):
 		"""Returns whether the snake is on a given tile"""
 		return self.list.count(pos);
 
-<<<<<<< HEAD
-=======
+
 	def is_head(self, pos):
 		if pos == self.head_mod:
 			return True;
 		return False;
 
->>>>>>> master
+
 
 	def grow(self, dir):
 		"""grows the snake in the given direction from the tail of the snake"""
 		pass;
 
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> master
+
