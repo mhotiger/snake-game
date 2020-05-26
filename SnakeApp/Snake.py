@@ -23,12 +23,14 @@ class Snake:
 		#add the head
 		self.list = deque([pos]);
 		#add an element one position down from the head
-		self.list.append([ pos[0] , pos[1]-1 ] );
+		self.list.append([ pos[0] , pos[1]+1 ] );
 		#add an element 2 positions down from the head
-		self.list.append([ pos[0] , pos[1]-2 ] );
+		self.list.append([ pos[0] , pos[1]+2 ] );
+
+		print(self.list)
 		
 
-		self.collided_self = False;
+		self.has_collided_self = False;
 
 
 	def move(self, dir):
@@ -59,9 +61,11 @@ class Snake:
 		self.list.pop();
 
 		if self.list.count(self.head_mod) > 1:
-			self.collided_self = True;
+			print(self.list)
+			print(self.head_mod)
+			self.has_collided_self = True;
 		else:
-			self.collided_self = False;
+			self.has_collided_self = False;
 		
 		
 

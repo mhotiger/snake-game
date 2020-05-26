@@ -34,29 +34,49 @@ class GameState:
 		self.dir = UP;
 
 		self._tickNum = 0;
+		self.tick_rate = 5;
 
 	def check_collide(self):
+		
+		i = 0;
 		for pellet in self.pellets:
 			if self.snake.on_position(pellet.pos):
-				return True
+				return i
+			i += 1
+		return -1
+
+
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
 
 		#increment the number of ticks we've made
 		self._tickNum += 1;
 
+
+		#speed up every 100 ticks
+		if self._tickNum % 100 == 0:
+			self.tick_rate += 3
+
+		#every 200 ticks, add another food pellet
+		if self._tickNum % 200 == 0:
+			self.pellets.append(FoodPellet())
+		
 		
 
 		if len(self.pellets) == 0:
 			self.pellets.append(FoodPellet())
-		if self.check_collide():
-
+		
+		if self.check_collide() != -1:
+			print(self.check_collide())
 			self.snake.grow(self.dir)
-			self.pellets.pop();
+			self.pellets.pop(self.check_collide());
 		else:
 			self.snake.move(self.dir)
 
-			self.pellets.pop()
+		#if you collide with yourself, you lose
+		if self.snake.has_collided_self:
+			self.has_lost = True;
+			
 
 
 

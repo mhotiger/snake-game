@@ -1,6 +1,6 @@
 #FoodPellet.py
 from SnakeApp.constants import *
-from collections import deque;
+
 import random
 
 class FoodPellet:
@@ -18,6 +18,4 @@ class FoodPellet:
             return True
     def do_nothing(self):
         pass
-
-    def kill(self):
 

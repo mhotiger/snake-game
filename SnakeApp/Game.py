@@ -12,6 +12,7 @@ RED_COLOR = (255,0,0);
 BLUE_COLOR= (0,0,255);
 BLACK_COLOR = (0, 0, 0);
 BLUE_COLOR = (0,0,255);
+GREEN_COLOR = (0,255,0);
 
 
 # Clock used to update game events and frames
@@ -37,6 +38,8 @@ class Game:
 			default 800x800 px
 
 		"""
+
+		self.size = size;
 		self.title = 'Snake';
 
 		self.game_state = GameState((25,25));
@@ -47,6 +50,7 @@ class Game:
 
 		self.screen = pygame.display.set_mode(size);
 		pygame.display.set_caption(SCREEN_TITLE);
+		self.font = pygame.font.Font('freesansbold.ttf', 32) 
 
 
 		self.done = False;
@@ -76,22 +80,65 @@ class Game:
 						self.game_state.dir = RIGHT;
 
 
+			if self.game_state.has_won:
+				self.won()
+			if self.game_state.has_lost:
+				self.lost()
 			
 			self.game_state.tick();
-
-
-			
 
 			#draw the screen
 			self.draw();
 			pygame.display.flip();
 			
 
-			clock.tick(TICK_RATE);
+			clock.tick(self.game_state.tick_rate);
 
 			
 
 		pygame.quit();
+
+
+	def won(self):
+		while not self.done:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.done = True;
+
+
+			self.screen.fill(GREEN_COLOR);
+			text = self.font.render('You Won', True, BLACK_COLOR) 
+			text_rect = text.get_rect()
+			text_rect.center = (self.size[0]//2, self.size[1]//2);
+			self.screen.blit(text, text_rect)
+			pygame.display.update();
+			clock.tick(30);
+
+
+
+		pygame.quit()
+
+
+	def lost(self):
+		while not self.done:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.done = True;
+
+
+			self.screen.fill(RED_COLOR);
+			text = self.font.render('You Lost', True, BLACK_COLOR) 
+			text_rect = text.get_rect()
+			text_rect.center = (self.size[0]//2, self.size[1]//2);
+			self.screen.blit(text, text_rect)
+			pygame.display.update();
+			clock.tick(30);
+
+
+
+		pygame.quit()
+
+
 
 
 
@@ -114,6 +161,7 @@ class Game:
 						 (self.margin + self.grid_rect_size) * c + self.margin,
 						 self.grid_rect_size,
 						 self.grid_rect_size])
+
 
 
 
