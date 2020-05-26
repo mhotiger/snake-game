@@ -1,3 +1,4 @@
+
 #gamestate.py
 from SnakeApp.constants import *;
 from SnakeApp.Snake import Snake;
@@ -6,7 +7,7 @@ from SnakeApp.FoodPellet import FoodPellet;
 
 class GameState:
 	"""A class to hold the state and objects involved with the snake game
-	
+
 	Properties:
 		size: a tuple that holds the (x,y) dimensions of the grid
 		snake: the game snake object
@@ -17,14 +18,15 @@ class GameState:
 
 	"""
 
-	
+
 
 	def __init__(self, size):
 
 		self.size = size;
-		self.snake = Snake(pos=[13,13], bounds=(25,25));
-		self.pellets = [];
-		self.pellets.append(FoodPellet);
+
+		self.snake = Snake(pos=[13,20], bounds=(25,25));
+		self.pellets = FoodPellet();
+
 
 		self.has_won = False;
 		self.has_lost = False;
@@ -41,7 +43,12 @@ class GameState:
 		self._tickNum += 1;
 
 		self.snake.move(self.dir);
-		
+
+		if self.pellets.apple_exists == False:
+			self.pellets=FoodPellet()
+		if self.pellets.on_position([r,c]) == self.snake.on_position([r,c]):
+			self.game_state.pellets.kill();
+
 
 
 

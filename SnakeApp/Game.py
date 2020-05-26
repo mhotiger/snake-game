@@ -9,6 +9,7 @@ SCREEN_TITLE = 'SnakeGame';
 # Colors according to RGB codes
 WHITE_COLOR = (255, 255, 255);
 RED_COLOR = (255,0,0);
+BLUE_COLOR= (0,0,255);
 BLACK_COLOR = (0, 0, 0);
 BLUE_COLOR = (0,0,255);
 
@@ -75,6 +76,10 @@ class Game:
 						self.game_state.dir = RIGHT;
 
 
+			self.draw();
+			self.game_state.tick();
+
+
 			self.game_state.tick();
 
 			#draw the screen
@@ -89,6 +94,7 @@ class Game:
 		pygame.quit();
 
 
+
 	def draw(self):
 
 		self.screen.fill(BLACK_COLOR);
@@ -99,13 +105,17 @@ class Game:
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;
-					if self.game_state.snake.is_head([r,c]):
+					if self.game_state.pellets.on_position([r,c]):
 						col = BLUE_COLOR;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0737bbcb5495e7d8a10d9aeaa84e349389b01df8
 					pygame.draw.rect(self.screen, col,
 						[(self.margin + self.grid_rect_size) * r + self.margin,
 						 (self.margin + self.grid_rect_size) * c + self.margin,
 						 self.grid_rect_size,
 						 self.grid_rect_size])
+
 
 
