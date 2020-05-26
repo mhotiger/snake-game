@@ -76,11 +76,11 @@ class Game:
 						self.game_state.dir = RIGHT;
 
 
-			self.draw();
+			
 			self.game_state.tick();
 
 
-			self.game_state.tick();
+			
 
 			#draw the screen
 			self.draw();
