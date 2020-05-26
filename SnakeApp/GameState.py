@@ -39,7 +39,6 @@ class GameState:
 		for pellet in self.pellets:
 			if self.snake.on_position(pellet.pos):
 				return True
-
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
 
@@ -51,10 +50,15 @@ class GameState:
 		if len(self.pellets) == 0:
 			self.pellets.append(FoodPellet())
 		if self.check_collide():
+
 			self.snake.grow(self.dir)
 			self.pellets.pop();
 		else:
 			self.snake.move(self.dir)
+
+			self.pellets.pop()
+
+
 
 
 
