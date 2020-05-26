@@ -23,6 +23,8 @@ pygame.font.init();
 #starting the mixer
 pygame.init()
 bgmusic = pygame.mixer.Sound('snakeloop.wav')
+crunch = pygame.mixer.Sound('crunch.wav')
+gameover = pygame.mixer.Sound('gameover.wav')
 
 class Game:
 	"""Game manager class. Stores details about the overall game state and serves as the
@@ -56,7 +58,7 @@ class Game:
 
 
 		self.done = False;
-		pygame.mixer.Sound.play(bgmusic)
+		pygame.mixer.Sound.play(bgmusic, -1)
 
 
 
@@ -80,7 +82,8 @@ class Game:
 					if event.key == pygame.K_RIGHT:
 						self.game_state.dir = RIGHT;
 
-
+			if self.game_state.check_collide() != -1:
+				pygame.mixer.Sound.play(crunch)
 			if self.game_state.has_won:
 				self.won()
 			if self.game_state.has_lost:
@@ -127,7 +130,8 @@ class Game:
 				if event.type == pygame.QUIT:
 					self.done = True;
 
-
+			pygame.mixer.Sound.stop(bgmusic)
+			pygame.mixer.Sound.play(gameover)
 			self.screen.fill(RED_COLOR);
 			text = self.font.render('You Lost', True, BLACK_COLOR)
 			text_rect = text.get_rect()
