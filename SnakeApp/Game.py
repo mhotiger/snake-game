@@ -107,10 +107,7 @@ class Game:
 						col = RED_COLOR;
 					if self.game_state.pellets.on_position([r,c]):
 						col = BLUE_COLOR;
-<<<<<<< HEAD
 
-=======
->>>>>>> 0737bbcb5495e7d8a10d9aeaa84e349389b01df8
 					pygame.draw.rect(self.screen, col,
 						[(self.margin + self.grid_rect_size) * r + self.margin,
 						 (self.margin + self.grid_rect_size) * c + self.margin,
