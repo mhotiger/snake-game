@@ -87,6 +87,7 @@ class Game:
 			if self.game_state.has_won:
 				self.won()
 			if self.game_state.has_lost:
+				
 				self.lost()
 
 			self.game_state.tick();
@@ -105,6 +106,7 @@ class Game:
 
 
 	def won(self):
+		
 		while not self.done:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -125,13 +127,16 @@ class Game:
 
 
 	def lost(self):
+
+		pygame.mixer.Sound.stop(bgmusic)
+		pygame.mixer.Sound.play(gameover)
+		
 		while not self.done:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.done = True;
 
-			pygame.mixer.Sound.stop(bgmusic)
-			pygame.mixer.Sound.play(gameover)
+			
 			self.screen.fill(RED_COLOR);
 			text = self.font.render('You Lost', True, BLACK_COLOR)
 			text_rect = text.get_rect()
@@ -141,6 +146,7 @@ class Game:
 			clock.tick(30);
 
 
+			
 
 		pygame.quit()
 

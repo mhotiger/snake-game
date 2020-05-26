@@ -45,8 +45,12 @@ class GameState:
 			i += 1
 		return -1
 
+
+	
 	def pellet_color_scroll(self):
 		return ((random.randint(0,255),random.randint(0,255),random.randint(0,255)));
+	
+
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
 
