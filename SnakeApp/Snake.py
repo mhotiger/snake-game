@@ -33,18 +33,7 @@ class Snake:
 
 	def move(self, dir):
 		"""moves the snake by one position in the direction given"""
-		#TODO: change head based on the direction
-
-		self.head[1] += 1;
-		head_mod = [self.head[0] % self.bounds[0], self.head[1] % self.bounds[0]];
-
-		#add the new head to the front of the list, and remove the tail of the list- moves us one square over
-		#modulo should wrap the head position of the snake when we reach the bounds of the frame
-		self.list.appendleft(head_mod);
-		self.list.pop();
-		if self.list.count(head_mod) > 1:
-			self.collided_self = True;
-
+		
 
 		try:
 			assert(dir == UP or dir == DOWN or dir == LEFT or dir == RIGHT)
