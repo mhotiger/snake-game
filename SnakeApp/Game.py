@@ -105,8 +105,9 @@ class Game:
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;
-					if self.game_state.pellets.on_position([r,c]):
-						col = BLUE_COLOR;
+					for pellet in self.pellets:
+						if pellet.on_position([r,c]):
+							col = BLUE_COLOR;
 
 					pygame.draw.rect(self.screen, col,
 						[(self.margin + self.grid_rect_size) * r + self.margin,
