@@ -7,6 +7,7 @@ SCREEN_TITLE = 'SnakeGame';
 # Colors according to RGB codes
 WHITE_COLOR = (255, 255, 255);
 RED_COLOR = (255,0,0);
+BLUE_COLOR= (0,0,255);
 BLACK_COLOR = (0, 0, 0);
 
 
@@ -61,6 +62,7 @@ class Game:
 				if event.type == pygame.QUIT:
 					self.done = True;
 
+<<<<<<< Updated upstream
 			for r in range(25):
 				for c in range(25):
 					pygame.draw.rect(self.screen,WHITE_COLOR,
@@ -68,6 +70,10 @@ class Game:
 						 (self.margin + self.grid_rect_size) * r + self.margin,
 						 self.grid_rect_size,
 						 self.grid_rect_size])
+=======
+			self.draw();
+			self.game_state.tick();
+>>>>>>> Stashed changes
 
 			clock.tick(TICK_RATE);
 
@@ -76,4 +82,25 @@ class Game:
 		pygame.quit();
 
 
+<<<<<<< Updated upstream
+=======
+	def draw(self):
+
+		for r in range(25):
+				for c in range(25):
+					col = WHITE_COLOR;
+
+					if self.game_state.snake.on_position([r,c]):
+						col = RED_COLOR;
+					if self.game_state.pellets.on_position([r,c]):
+						col = BLUE_COLOR;
+					if self.game_state.pellets.on_position([r,c]) == self.game_state.snake.on_position([r,c]):
+						self.game_state.pellets.kill();
+					pygame.draw.rect(self.screen, col,
+						[(self.margin + self.grid_rect_size) * c + self.margin,
+						 (self.margin + self.grid_rect_size) * r + self.margin,
+						 self.grid_rect_size,
+						 self.grid_rect_size])
+
+>>>>>>> Stashed changes
 
