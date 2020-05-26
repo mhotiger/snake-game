@@ -105,7 +105,7 @@ class Game:
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;
-					for pellet in self.pellets:
+					for pellet in self.game_state.pellets:
 						if pellet.on_position([r,c]):
 							col = BLUE_COLOR;
 
