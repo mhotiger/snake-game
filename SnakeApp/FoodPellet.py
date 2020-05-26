@@ -20,4 +20,4 @@ class FoodPellet:
         pass
 
     def kill(self):
-        del self
+
