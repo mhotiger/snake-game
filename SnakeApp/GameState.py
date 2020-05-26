@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-#gamestate.py
-=======
+
 #gamestate.py
 from SnakeApp.constants import *;
 from SnakeApp.Snake import Snake;
@@ -9,7 +7,11 @@ from SnakeApp.FoodPellet import FoodPellet;
 
 class GameState:
 	"""A class to hold the state and objects involved with the snake game
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> master
 	Properties:
 		size: a tuple that holds the (x,y) dimensions of the grid
 		snake: the game snake object
@@ -25,8 +27,10 @@ class GameState:
 	def __init__(self, size):
 
 		self.size = size;
+
 		self.snake = Snake(pos=[13,20], bounds=(25,25));
 		self.pellets = FoodPellet();
+
 
 		self.has_won = False;
 		self.has_lost = False;
@@ -52,5 +56,3 @@ class GameState:
 
 
 
-
->>>>>>> Stashed changes
