@@ -3,7 +3,7 @@
 from SnakeApp.constants import *;
 from SnakeApp.Snake import Snake;
 from SnakeApp.FoodPellet import FoodPellet;
-
+import random
 
 class GameState:
 	"""A class to hold the state and objects involved with the snake game
@@ -37,7 +37,7 @@ class GameState:
 		self.tick_rate = 5;
 
 	def check_collide(self):
-		
+
 		i = 0;
 		for pellet in self.pellets:
 			if self.snake.on_position(pellet.pos):
@@ -45,7 +45,8 @@ class GameState:
 			i += 1
 		return -1
 
-
+	def pellet_color_scroll(self):
+		return ((random.randint(0,255),random.randint(0,255),random.randint(0,255)));
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
 
@@ -60,12 +61,12 @@ class GameState:
 		#every 200 ticks, add another food pellet
 		if self._tickNum % 200 == 0:
 			self.pellets.append(FoodPellet())
-		
-		
+
+
 
 		if len(self.pellets) == 0:
 			self.pellets.append(FoodPellet())
-		
+
 		if self.check_collide() != -1:
 			print(self.check_collide())
 			self.snake.grow(self.dir)
@@ -76,7 +77,7 @@ class GameState:
 		#if you collide with yourself, you lose
 		if self.snake.has_collided_self:
 			self.has_lost = True;
-			
+
 
 
 

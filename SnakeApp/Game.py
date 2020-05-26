@@ -50,7 +50,7 @@ class Game:
 
 		self.screen = pygame.display.set_mode(size);
 		pygame.display.set_caption(SCREEN_TITLE);
-		self.font = pygame.font.Font('freesansbold.ttf', 32) 
+		self.font = pygame.font.Font('freesansbold.ttf', 32)
 
 
 		self.done = False;
@@ -64,7 +64,7 @@ class Game:
 
 
 		while not self.done:
-			
+
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -84,17 +84,17 @@ class Game:
 				self.won()
 			if self.game_state.has_lost:
 				self.lost()
-			
+
 			self.game_state.tick();
 
 			#draw the screen
 			self.draw();
 			pygame.display.flip();
-			
+
 
 			clock.tick(self.game_state.tick_rate);
 
-			
+
 
 		pygame.quit();
 
@@ -107,7 +107,7 @@ class Game:
 
 
 			self.screen.fill(GREEN_COLOR);
-			text = self.font.render('You Won', True, BLACK_COLOR) 
+			text = self.font.render('You Won', True, BLACK_COLOR)
 			text_rect = text.get_rect()
 			text_rect.center = (self.size[0]//2, self.size[1]//2);
 			self.screen.blit(text, text_rect)
@@ -127,7 +127,7 @@ class Game:
 
 
 			self.screen.fill(RED_COLOR);
-			text = self.font.render('You Lost', True, BLACK_COLOR) 
+			text = self.font.render('You Lost', True, BLACK_COLOR)
 			text_rect = text.get_rect()
 			text_rect.center = (self.size[0]//2, self.size[1]//2);
 			self.screen.blit(text, text_rect)
@@ -154,7 +154,7 @@ class Game:
 						col = RED_COLOR;
 					for pellet in self.game_state.pellets:
 						if pellet.on_position([r,c]):
-							col = BLUE_COLOR;
+							col = self.game_state.pellet_color_scroll();
 
 					pygame.draw.rect(self.screen, col,
 						[(self.margin + self.grid_rect_size) * r + self.margin,
