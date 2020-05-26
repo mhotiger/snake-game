@@ -48,7 +48,7 @@ class GameState:
 
 		if self.pellets.apple_exists == False:
 			self.pellets=FoodPellet()
-		if check_collide():
+		if self.check_collide():
 			self.pellets.kill();
 
 
