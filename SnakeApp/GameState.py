@@ -46,6 +46,8 @@ class GameState:
 
 		if self.pellets.apple_exists == False:
 			self.pellets=FoodPellet()
+		if self.pellets.on_position([r,c]) == self.snake.on_position([r,c]):
+			self.game_state.pellets.kill();
 
 
 
