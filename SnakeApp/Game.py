@@ -20,7 +20,9 @@ clock = pygame.time.Clock();
 TICK_RATE = 5;
 pygame.font.init();
 
-
+#starting the mixer
+pygame.init()
+bgmusic = pygame.mixer.Sound('snakeloop.wav')
 
 class Game:
 	"""Game manager class. Stores details about the overall game state and serves as the
@@ -54,7 +56,7 @@ class Game:
 
 
 		self.done = False;
-
+		pygame.mixer.Sound.play(bgmusic)
 
 
 
@@ -64,7 +66,6 @@ class Game:
 
 
 		while not self.done:
-
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -86,6 +87,7 @@ class Game:
 				self.lost()
 
 			self.game_state.tick();
+
 
 			#draw the screen
 			self.draw();
@@ -142,6 +144,8 @@ class Game:
 
 
 
+
+
 	def draw(self):
 
 		self.screen.fill(BLACK_COLOR);
@@ -161,6 +165,7 @@ class Game:
 						 (self.margin + self.grid_rect_size) * c + self.margin,
 						 self.grid_rect_size,
 						 self.grid_rect_size])
+
 
 
 
