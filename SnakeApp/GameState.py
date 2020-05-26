@@ -35,7 +35,7 @@ class GameState:
 
 		self._tickNum = 0;
 
-	def check_collison(self):
+	def check_collide(self):
 		return self.snake.on_position(self.pellets.pos)
 
 	def tick(self):
@@ -48,8 +48,8 @@ class GameState:
 
 		if self.pellets.apple_exists == False:
 			self.pellets=FoodPellet()
-		if check_collision():
-			self.game_state.pellets.kill();
+		if check_collide():
+			self.pellets.kill();
 
 
 

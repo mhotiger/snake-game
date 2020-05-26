@@ -21,4 +21,3 @@ class FoodPellet:
 
     def kill(self):
         del self
-        self.apple_exists = False
