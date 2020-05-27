@@ -28,14 +28,14 @@ class Snake:
 		self.list.append([ pos[0] , pos[1]+2 ] );
 
 		print(self.list)
-		
+
 
 		self.has_collided_self = False;
 
 
 	def move(self, dir):
 		"""moves the snake by one position in the direction given"""
-		
+
 
 		try:
 			assert(dir == UP or dir == DOWN or dir == LEFT or dir == RIGHT)
@@ -66,8 +66,8 @@ class Snake:
 			self.has_collided_self = True;
 		else:
 			self.has_collided_self = False;
-		
-		
+
+
 
 	def on_position(self, pos):
 		"""Returns whether the snake is on a given tile"""
@@ -104,7 +104,7 @@ class Snake:
 		#add the new head to the front of the list, and remove the tail of the list- moves us one square over
 		#modulo should wrap the head position of the snake when we reach the bounds of the frame
 		self.list.appendleft(self.head_mod);
-		
+
 
 		if self.list.count(self.head_mod) > 1:
 			self.collided_self = True;

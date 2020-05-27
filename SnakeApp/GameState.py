@@ -25,10 +25,9 @@ class GameState:
 		self.score=0;
 		self.size = size;
 
-		self.snake = Snake(pos=[13,20], bounds=(25,25));
+		self.snake = Snake(pos=[13,20], bounds= (self.size));
 		self.pellets = []
 		self.pellets.append(FoodPellet())
-
 		self.has_won = False;
 		self.has_lost = False;
 

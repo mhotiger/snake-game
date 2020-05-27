@@ -3,6 +3,7 @@ import pygame;
 from SnakeApp.constants import *
 from SnakeApp.GameState import GameState
 
+
 # Size of the screen
 SCREEN_TITLE = 'SnakeGame';
 
@@ -76,6 +77,19 @@ class Game:
 				if event.type == pygame.QUIT:
 					self.done = True;
 				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_UP and self.game_state.dir == DOWN:
+						self.game_state.dir=DOWN;
+						break
+					if event.key == pygame.K_DOWN and self. game_state.dir == UP:
+						self.game_state.dir=UP;
+						break
+					if event.key == pygame.K_LEFT and self.game_state.dir == RIGHT:
+						self.game_state.dir=RIGHT;
+						break
+					if event.key == pygame.K_RIGHT and self.game_state.dir == LEFT:
+						self.game_state.dir=LEFT;
+						break
+
 					if event.key == pygame.K_UP:
 						self.game_state.dir = UP;
 					if event.key == pygame.K_DOWN:
@@ -86,7 +100,9 @@ class Game:
 						self.game_state.dir = RIGHT;
 					if event.key == pygame.K_r:
 						#working on restart function
-						pygame.mixer.quit();
+						pygame.mixer.stop()
+						self.__init__()
+
 					if event.key == pygame.K_p:
 						#rough pause function in place
 						self.game_state.paused = True
@@ -98,6 +114,7 @@ class Game:
 								if event.key == pygame.K_p:
 									self.game_state.paused = False
 
+			#checks for collision with apple and plays crunch if collision is true
 			if self.game_state.check_collide() != -1:
 				pygame.mixer.Sound.play(crunch)
 			if self.game_state.has_won:
@@ -107,7 +124,6 @@ class Game:
 
 			self.game_state.tick();
 
-
 			#draw the screen
 			self.draw();
 			pygame.display.flip();
@@ -115,9 +131,7 @@ class Game:
 
 			clock.tick(self.game_state.tick_rate);
 
-
-
-		pygame.quit();
+		return True
 
 	def won(self):
 
@@ -138,9 +152,6 @@ class Game:
 			pygame.display.update();
 			clock.tick(30);
 
-
-
-		pygame.quit()
 
 
 	def lost(self):
@@ -165,8 +176,6 @@ class Game:
 
 
 
-		pygame.quit()
-
 
 
 
@@ -183,6 +192,8 @@ class Game:
 					col = WHITE_COLOR;
 					if self.game_state.snake.on_position([r,c]):
 						col = RED_COLOR;
+					if self.game_state.snake.head == ([r,c]):
+						col = GREEN_COLOR;
 					for pellet in self.game_state.pellets:
 						if pellet.on_position([r,c]):
 							col = self.game_state.pellet_color_scroll();
