@@ -19,7 +19,6 @@ GREEN_COLOR = (0,255,0);
 clock = pygame.time.Clock();
 TICK_RATE = 5;
 pygame.font.init();
-
 #starting the mixer
 pygame.init()
 #loading the files
@@ -30,6 +29,7 @@ winmusic = pygame.mixer.Sound('winmusic2.wav')
 #setting the volume
 bgmusic.set_volume(.5)
 crunch.set_volume(.75)
+
 
 
 class Game:
@@ -71,10 +71,7 @@ class Game:
 
 	def run(self):
 		"""Run the game loop"""
-
-
 		while not self.done:
-
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.done = True;
@@ -87,13 +84,25 @@ class Game:
 						self.game_state.dir = LEFT;
 					if event.key == pygame.K_RIGHT:
 						self.game_state.dir = RIGHT;
+					if event.key == pygame.K_r:
+						#working on restart function
+						pygame.mixer.quit();
+					if event.key == pygame.K_p:
+						#rough pause function in place
+						self.game_state.paused = True
+					while self.game_state.paused == True:
+						for event in pygame.event.get():
+							if event.type == pygame.QUIT:
+								self.done = True;
+							if event.type == pygame.KEYDOWN:
+								if event.key == pygame.K_p:
+									self.game_state.paused = False
 
 			if self.game_state.check_collide() != -1:
 				pygame.mixer.Sound.play(crunch)
 			if self.game_state.has_won:
 				self.won()
 			if self.game_state.has_lost:
-
 				self.lost()
 
 			self.game_state.tick();
@@ -109,7 +118,6 @@ class Game:
 
 
 		pygame.quit();
-
 
 	def won(self):
 

@@ -36,6 +36,7 @@ class GameState:
 
 		self._tickNum = 0;
 		self.tick_rate = 5;
+		self.paused = False
 
 	def check_collide(self):
 
@@ -51,7 +52,8 @@ class GameState:
 	def pellet_color_scroll(self):
 		return ((random.randint(0,255),random.randint(0,255),random.randint(0,255)));
 
-
+	def pause(self):
+		pass
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
 
