@@ -22,6 +22,7 @@ class GameState:
 
 	def __init__(self, size):
 
+		self.score=0;
 		self.size = size;
 
 		self.snake = Snake(pos=[13,20], bounds=(25,25));
@@ -45,11 +46,11 @@ class GameState:
 			i += 1
 		return -1
 
-
-	
+	def return_score(self):
+		print(self.score)
 	def pellet_color_scroll(self):
 		return ((random.randint(0,255),random.randint(0,255),random.randint(0,255)));
-	
+
 
 	def tick(self):
 		"""Actions for one step of the game. Update the state of the object to reflect changes"""
@@ -74,10 +75,12 @@ class GameState:
 		if self.check_collide() != -1:
 			print(self.check_collide())
 			self.snake.grow(self.dir)
+			self.score+=1
 			self.pellets.pop(self.check_collide());
 		else:
 			self.snake.move(self.dir)
-
+		if self.score >= 18:
+			self.has_won = True;
 		#if you collide with yourself, you lose
 		if self.snake.has_collided_self:
 			self.has_lost = True;
